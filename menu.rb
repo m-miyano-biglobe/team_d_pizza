@@ -31,6 +31,14 @@ class Menu
     @toppings.find{|p| p.name == name}.id
   end
 
+  def pizza_name_list
+    @pizzas.map(&:name)
+  end
+
+  def topping_name_list
+    @toppings.map(&:name)
+  end
+
   class Pizza
     attr_accessor :id, :name, :price, :toppings
     def initialize(id, name, price, toppings)
