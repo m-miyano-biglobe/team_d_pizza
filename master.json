@@ -1,0 +1,59 @@
+{
+  "pizza": {
+    "margherita": {
+      "id": 1,
+      "name": "マルゲリータ",
+      "price": 500,
+      "toppings": [3,4,5]
+    },
+    "teriyaki": {
+      "id": 2,
+      "name": "照り焼きチキン",
+      "price": 1000,
+      "toppings": [6,7]
+    },
+    "mix": {
+      "id": 3,
+      "name": "スペシャルミックス",
+      "price": 1500,
+      "toppings": [1,2,3,4,5,6,7]
+    }
+  },
+  "toppings": {
+    "oden": {
+      "id": 1,
+      "name": "おでん",
+      "price": 2000
+    },
+    "pineapple": {
+      "id": 2,
+      "name": "パイナップル",
+      "price": 100
+    },
+    "cheese": {
+      "id": 3,
+      "name": "チーズ",
+      "price": 100
+    },
+    "tomato": {
+      "id": 4,
+      "name": "トマト",
+      "price": 100
+    },
+    "basil": {
+      "id": 5,
+      "name": "バジル",
+      "price": 100
+    },
+    "chicken": {
+      "id": 6,
+      "name": "チキン",
+      "price": 100
+    },
+    "mayonnaise": {
+      "id": 7,
+      "name": "マヨネーズ",
+      "price": 2000
+    }
+  }
+}
