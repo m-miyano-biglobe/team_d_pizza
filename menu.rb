@@ -23,20 +23,24 @@ class Menu
     end
   end
 
-  def pizza_id_by_name(name)
+  def pizza_id(name)
     @pizzas.find{|p| p.name == name}.id
   end
 
-  def topping_id_by_name(name)
+  def topping_id(name)
     @toppings.find{|p| p.name == name}.id
   end
 
-  def pizza_name_list
-    @pizzas.map(&:name)
+  def toppings(pizza_id)
+    @pizzas.find{|p| p.id == pizza_id}.toppings
   end
 
-  def topping_name_list
-    @toppings.map(&:name)
+  def pizza_price(id)
+    @pizzas.find{|p| p.id == id}.price
+  end
+
+  def topping_price(id)
+    @toppings.find{|p| p.id == id}.price
   end
 
   class Pizza
@@ -58,3 +62,5 @@ class Menu
     end
   end
 end
+
+p Menu.new
