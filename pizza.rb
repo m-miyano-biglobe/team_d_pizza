@@ -15,18 +15,37 @@ class OrderList
 end
 
 class Order
-  attr_reader :id, :status, :customer, :product
+  attr_reader :id, :status, :customer, :products
   attr_accessor :uber_id
-	def initialize(name, address, count)
+	def initialize(name, address)
     @status = Status.new
 		@id = OrderList.create_id
     @customer = Customer.new(name, address)
-    @product = OrderedProduct.new(count)
+    @products = []
+  end
+
+  def add_ordered_product(pizza_id, count, toppings)
+    @products << OrderedProduct.new(pizza_id, count, toppings)
+  end
+
+  # ピザ名称、トッピング名称、売上の文字列を返す
+  def order_detail
+    # 明細を作成する
+  end
+    
+  private
+
+  def pizza_name(pizza_id)
+    # TODO メニューからピザ名称を参照する
+  end
+
+  def topping_name(topping_id)
+    # TODO メニューからトッピング名称を参照する
   end
 
   def profit
     if @status.is_deliveried
-      @product.count * @product.price
+      # TODO メニューから注文商品の価格を参照して売上の計算をする
     end
   end
 end
