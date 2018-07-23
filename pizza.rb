@@ -40,11 +40,26 @@ class Customer
 end
 
 class OrderedProduct
-  attr_reader :count, :name, :price
-	def initialize(count)
-		@count = count
-		@name = 'マルゲリータ'
-		@price = 500
+  attr_reader :pizza_id, :count, :toppings
+  def initialize(pizza_id, count, *toppings)
+    @pizza_id = pizza_id
+    @count = count
+    @toppings = add_topping(*toppings)
+  end
+
+  # 追加のトッピングのlistを返す
+  def add_topping(*toppings)
+    topping_list = []
+    toppings.each do |topping_id|
+      # ピザクラスからベーストッピングIDのリストを取得
+      # 追加トッピングIDがベーストッピングリストになければtopping_listに追加
+    end
+    p topping_list
+  end
+
+  # 注文商品の金額を返す
+  def product_price
+    #(ピザクラスから取得した金額 + 追加トッピングの金額) * count
   end
 end
 
