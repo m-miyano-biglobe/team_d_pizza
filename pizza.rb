@@ -1,3 +1,7 @@
+require_relative 'pizza_list'
+require_relative 'topping_list'
+
+
 class OrderList
   attr_accessor :order
 	def initialize
@@ -44,22 +48,29 @@ class OrderedProduct
   def initialize(pizza_id, count, *toppings)
     @pizza_id = pizza_id
     @count = count
-    @toppings = add_topping(*toppings)
-  end
+    @toppings = toppings != [] ? add_topping(*toppings) : []
 
   # 追加のトッピングのlistを返す
   def add_topping(*toppings)
     topping_list = []
+    # ピザのベーストッピングのリストを取得
+    base_toppings = pizza_by_id(@pizza_id).topping_ids
     toppings.each do |topping_id|
-      # ピザクラスからベーストッピングIDのリストを取得
       # 追加トッピングIDがベーストッピングリストになければtopping_listに追加
+      topping_list << topping_id unless base_toppings.include?(topping_id)
     end
     p topping_list
   end
 
   # 注文商品の金額を返す
   def product_price
+    # 追加トッピングの金額の総計
+    topping_sum = 0
+    @toppings.each do |topping|
+      topping_sum += topping_by_id(topping).price
+    end
     #(ピザクラスから取得した金額 + 追加トッピングの金額) * count
+    p (pizza_by_id(@pizza_id).price + topping_sum) * @count
   end
 end
 
