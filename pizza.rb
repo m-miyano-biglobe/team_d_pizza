@@ -144,17 +144,46 @@ class CompleteStatus
 end
 
 class Main
+  load './pizza_list.rb'
+  load './topping_list.rb'
+  
   ORDER_LIST = OrderList.new
 
   def initialize
     # 注文
 		print "名前："
-		name = gets
-		print "住所："
-		address = gets
-		print "マルゲリータの枚数："
-		count = gets.to_i
-    ORDER_LIST.add_order(Order.new(name, address, count))
+    
+		name = gets.chomp!
+    print "住所："
+		address = gets.chomp!
+
+    ordering = true
+    order_list = []
+    while(ordering)
+      print "以下からピザを選択してください\n"
+      print "#{PizzaList.new.pizzas.map(&:name).join(' ')}\n"
+      print "ピザ："
+      pizza = gets.chomp!
+      print "ピザの枚数："
+      pizza_count = gets.to_i
+      print "トッピングは必要ですか(y/n):"
+      need_topping = gets.chomp! == 'y'
+      toppings = []
+      while(need_topping)
+        print "以下からトッピングを選択してください\n"
+        print "#{ToppingList.new.toppings.map(&:name).join(' ')}\n"
+        print "トッピング："
+        toppings << gets.chomp!
+        print "トッピングの追加を終了しますか(y/n):"
+        need_topping = !(gets.chomp! == 'y')
+      end
+      print "注文を終了しますか(y/n):"
+      ordering = !(gets.chomp! == 'y')
+      order_list << [pizza, pizza_count, toppings]
+    end
+
+    ORDER_LIST.add_order(name, address, order_list)
+
     # 調理中
     ORDER_LIST.order.each do |item|
       item.status.to_next_status
