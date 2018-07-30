@@ -68,6 +68,7 @@ class OrderedProduct
     @pizza_id = pizza_id
     @count = count
     @toppings = toppings != [] ? add_topping(*toppings) : []
+  end
 
   # 追加のトッピングのlistを返す
   def add_topping(*toppings)
